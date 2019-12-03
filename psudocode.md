@@ -2,6 +2,10 @@
 
 // game flow and problems to solve 
 
+
+//variables 
+
+
 //1 start the game and the pattern (init the game)
 // user clicks something on board that inits the main play sequence (function). 
 
