@@ -1,133 +1,155 @@
-body {
-    background: #70e1f5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ffd194, #70e1f5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #ffd194, #70e1f5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+body,
+.controlBoard {
+  background: #70e1f5; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffd194,
+    #70e1f5
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffd194,
+    #70e1f5
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .container {
-    margin: 0 auto;
-    text-align: center;
+  margin: 0 auto;
+  text-align: center;
 }
 
-/* .playBoard{
-    position: absolute;
-    top:170px;
-    width:640px;
-    height: 640px;
-    z-index:0;
-    background-color: white;
-    border-radius: 310px;
-} */
+#info {
+  font-size: 1.6em;
+  color: white;
+}
 
 .controlBoard {
-    position: absolute;
-    background:white;
-    border-radius: 50%;
-    height: 250px;
-    width: 250px;
-    border: peachpuff solid 10px;
-    top: 50%;
-    left: 50%;
-    margin: -125px 0px 0px -125px;
-    box-sizing: border-box;
-}  
-
-.greenPad {
-    position: absolute;
-    background: #71eeb8;
-    height: 250px;
-    width: 250px;
-    border-radius: 400px 0 0 0;
-    top: 50%;
-    left: 50%;
-    margin: -250px 0px 0px -250px;
-    border:peachpuff solid 2px; 
-    box-sizing: border-box;
+  position: absolute;
+  /* background:white; */
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  border: white solid 10px;
+  top: 50%;
+  left: 50%;
+  margin: -125px 0px 0px -125px;
+  box-sizing: border-box;
 }
 
-.redPad {
-    position: absolute;
-    height: 250px;
-    width: 250px;
-    border-radius: 0 250px 0 0;
-    /* background:#FFD1DC; */
-    top: 50%;
-    left: 50%;
-    margin: -250px 0px 0px 0px;
-    border:peachpuff solid 2px; 
-    box-sizing: border-box;
-    background: rgb(224,162,189);
-background: radial-gradient(circle, rgba(224,162,189,0.9671626984126984) 76%, rgba(148,187,233,1) 100%);
-} 
-
-.bluePad {
-    position: absolute;
-    height: 250px;
-    width: 250px;
-    border-radius: 0 0 0 250px;
-    -moz-border-radius: 0 0 0 250px;
-    -webkit-border-radius: 0 0 0 250px;
-    background: paleturquoise;
-    top: 50%;
-    left: 50%;
-    margin: 0px -250px 0px -250px;
-    box-sizing: border-box;
-    border:peachpuff solid 2px; 
-    box-sizing: border-box;
+#greenPad {
+  position: absolute;
+  background: #71eeb8;
+  height: 250px;
+  width: 250px;
+  border-radius: 400px 0 0 0;
+  top: 50%;
+  left: 50%;
+  margin: -250px 0px 0px -250px;
+  border: white solid 2px;
+  box-sizing: border-box;
 }
 
-.yellowPad{
-    position: absolute;
-    height: 250px;
-    width: 250px;
-    border-radius: 0 0 250px 0;
-    background: #ecfd96;
-    top: 50%;
-    left: 50%;
-    margin: 0px 0px -250px 0px;
-    box-sizing: border-box;
-    border:peachpuff solid 2px; 
-    box-sizing: border-box;
+/* DEFINE CLASSES EVEN IF THEY ARE NOT INITIALLY USED */
+#greenPad.grLit {
+  background: black;
 }
+
+#redPad {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  border-radius: 0 250px 0 0;
+  /* background:#FFD1DC; */
+  top: 50%;
+  left: 50%;
+  margin: -250px 0px 0px 0px;
+  border: white solid 2px;
+  box-sizing: border-box;
+  background: rgb(224, 162, 189);
+  background: radial-gradient(
+    circle,
+    rgba(224, 162, 189, 0.9671626984126984) 76%,
+    rgba(148, 187, 233, 1) 100%
+  );
+}
+
+/* .redLit {
+
+} */
+
+#bluePad {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  border-radius: 0 0 0 250px;
+  background: paleturquoise;
+  top: 50%;
+  left: 50%;
+  margin: 0px -250px 0px -250px;
+  box-sizing: border-box;
+  border: white solid 2px;
+  box-sizing: border-box;
+}
+
+/* .blLit {
+    box-shadow: 
+        inset 0 0 50px #fff,        
+        inset 20px 0 80px #f0f,    
+        inset -20px 0 80px #0ff,   
+        inset 20px 0 300px #f0f,   
+        inset -20px 0 300px #0ff,  
+        0 0 50px #fff,            
+        -10px 0 80px #f0f,        
+        10px 0 80px #0ff;  
+}  */
+
+#yellowPad {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  border-radius: 0 0 250px 0;
+  background: #ecfd96;
+  top: 50%;
+  left: 50%;
+  margin: 0px 0px -250px 0px;
+  box-sizing: border-box;
+  border: white solid 2px;
+  box-sizing: border-box;
+}
+
+/* .yeLit {
+    box-shadow: 
+        inset 0 0 50px #fff,        
+        inset 20px 0 80px rgb(255, 238, 0),    
+        inset -20px 0 80px #0ff,   
+        inset 20px 0 300px rgb(255, 238, 0),   
+        inset -20px 0 300px #0ff,  
+        0 0 50px #fff,            
+        -10px 0 80px rgb(255, 238, 0),        
+        10px 0 80px #0ff;  
+} */
 
 h1 {
-    font-family: 'Kaushan Script', cursive;
-    font-size: 2em;
+  font-family: "Kaushan Script", cursive;
+  font-size: 2em;
 }
 
 #startDiGame {
-    font-size: 2em;
+  font-size: 2.8em;
+  color: white;
 }
 
+/* .in {
+    display: inline-block;
+    vertical-align: middle;
+} */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* box-shadow: (GLOW)
-        inset 0 0 50px #fff,       inner white 
-        inset 20px 0 80px #f0f,    inner left magenta short 
-        inset -20px 0 80px #0ff,   inner right cyan short 
-        inset 20px 0 300px #f0f,   inner left magenta broad 
-        inset -20px 0 300px #0ff,  inner right cyan broad 
-        0 0 50px #fff,             outer white 
-        -10px 0 80px #f0f,        outer left magenta 
-        10px 0 80px #0ff;         outer right cyan   */
-
+.level {
+  /* border: solid 2px white; */
+  border-radius: 10px;
+  color: white;
+  width: 60px;
+  height: 45px;
+  font-size: 40px;
+  vertical-align: middle;
+}

@@ -1,22 +1,41 @@
-/*----- constants -----*/
-
-/*----- app's state (variables) -----*/
-
-/*----- cached element references -----*/
-
-/*----- event listeners -----*/
-
-/*----- functions -----*/
 
 
-// game flow and problems to solve 
+//taking an OOP approach 
 
-//1 start the game and the pattern (init the game)
-// user clicks something on board that inits the main play sequence (function). 
+let game = {
+    // gameOn: false, 
+    // counter: 0, //score
+    // maxCount: 15,
+    // playerTurn: false, 
+    // simonPat = [],
+    // usesrPat = [],
+    // newGame = function (){
+    //     this.counter=0; 
+    // },
+    //starts the game
+    startGame: function() {
+        if(this.playerTurn === false){
+            this.newPlayerTurn();
+    } this.newGame();
+}, 
+    newPlayerTurn: function() {
+        //that=this;
+        $(".colorPads").on("click", function() {
+            if(playerTurn === true) {
+             //   let litPad = need to make a timed var 
+            }
+        }
+},
+    getLit = function()
 
-//the start button starts the game. 
+} 
+    
 
 
 
-
-//2 player attempts the same pattern 
+gameOn= false 
+counter= 0 //score
+maxCount= 15
+playerTurn= false 
+simonPat = []
+usesrPat = []
