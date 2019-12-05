@@ -1,17 +1,34 @@
 # my work flow approaches to the game
 
-// game flow and problems to solve 
+// game flow and problems to solve
 
+//user click logic
+//if player turn === true
+//user clicks init user pattern array
+//this can call any of the pads
+//if correct simon pattern conts + 1
+//if correct display +1
+//if false game over function is called
 
-//variables 
+---
 
+//need to imple
 
-//1 start the game and the pattern (init the game)
-// user clicks something on board that inits the main play sequence (function). 
+-color click troubleshoot
 
-//the start button starts the game. 
+-sound source and test for event click pads
+-sound source and test for event click begin
+-sound source and test for event click game over
 
+-display counter event and build
 
+-play full game to torubleshoot and see flow
 
-
-//2 player attempts the same pattern 
+```
+-any features;
+    -glow counter
+    - winner and loser msg
+    - backgrouond style
+    -strict/ easy mode
+    - responseive board w media query
+```
