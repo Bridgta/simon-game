@@ -1,5 +1,7 @@
 // Initialization variables
 let gameOn, counter, maxCount, playerTurn, simonPatterns, userPatterns;
+
+let numberOfUserGuesses = 0;
 // rightAnswer;
 
 let colours = [
@@ -23,7 +25,9 @@ function initializeGame() {
   simonPatterns = [];
   userPatterns = [];
 
-  generatePattern();
+  if (gameOn) {
+    generateSimonPattern();
+  }
 }
 
 function startGame() {
@@ -37,13 +41,17 @@ function startGame() {
 
 function gameOver() {
   gameOn = false;
+  numberOfUserGuesses = 0;
   initializeGame();
-  //add game over audio
-  //display == X
+  alert("womp womp womp");
 }
 
-function generatePattern() {
+function generateSimonPattern() {
   const randomColour = colours[Math.floor(Math.random() * colours.length)];
+  playerTurn = false;
+  // numberOfUserGuesses = 0;
+  // userPatterns = [];
+
   if (!playerTurn) {
     simonPatterns.push(randomColour);
   }
@@ -51,8 +59,11 @@ function generatePattern() {
 
 function playSimonsPatterns() {
   // only play pattern when the game has started/initialized
+
   if (simonPatterns.length > 0) {
-    simonPatterns.forEach(function(pattern) {
+    // Loop thru the simon picks and display them
+    simonPatterns.forEach(function(pattern, index) {
+      //debugger;
       if (pattern.colour === "red") {
         redLight(pattern);
       } else if (pattern.colour === "yellow") {
@@ -64,6 +75,7 @@ function playSimonsPatterns() {
         greenLight(pattern);
       }
     });
+    playerTurn = true;
   }
 }
 
@@ -73,23 +85,23 @@ function toggleLight(pad, cssClass) {
   pad.toggleClass(cssClass);
   return setTimeout(() => {
     pad.toggleClass(cssClass);
-  }, 500);
+  }, 700);
 }
 
 function greenLight(pattern) {
-  console.log(pattern.colour);
+  // console.log(pattern.colour);
   toggleLight(greenPad, "grLit");
 }
 function yellowLight(pattern) {
-  console.log(pattern.colour);
+  // console.log(pattern.colour);
   toggleLight(yellowPad, "yeLit");
 }
 function blueLight(pattern) {
-  console.log(pattern.colour);
+  // console.log(pattern.colour);
   toggleLight(bluePad, "blLit");
 }
 function redLight(pattern) {
-  console.log(pattern.colour);
+  // console.log(pattern.colour);
   toggleLight(redPad, "redLit");
 }
 
@@ -98,34 +110,36 @@ function redLight(pattern) {
 function generateUserPattern(event) {
   // take the input from the user click and add it to the user patterns array so we can check it against simon's
   const userChoice = event.target.getAttribute("value");
-  userPatterns.push(userChoice);
-  checkAnswer();
+
+  if (playerTurn) {
+    numberOfUserGuesses++;
+    userPatterns.push(userChoice);
+    checkAnswer();
+  }
 
   console.log(userChoice);
 }
 
 function checkAnswer() {
   // checks the colour chosen in the user pattern against the simon pattern at a given index
-  let rightAnswer = true;
+  let rightAnswer;
+
   userPatterns.forEach(function(colour, index) {
-    // console.log(colours);
-    if (userPatterns[index] === simonPatterns[index].colour) {
+    // debugger;
+    if (colour === simonPatterns[index].colour) {
       console.log("SAME");
-    } else {
-      rightAnswer = false;
-      console.log("game over");
+      rightAnswer = true;
     }
   });
+
+  console.log("rightAnswer", rightAnswer);
   keepPlaying(rightAnswer);
 }
 
-function keepPlaying(wasRight) {
-  playerTurn != playerTurn;
-  if (wasRight === true) {
-    return setTimeout(() => {
-      generatePattern();
-      playSimonsPatterns();
-    }, 1000);
+function keepPlaying(rightAnswer) {
+  if (rightAnswer) {
+    generateSimonPattern();
+    playSimonsPatterns();
   } else {
     gameOver();
   }
@@ -157,16 +171,16 @@ yellowPad.on("click", event => generateUserPattern(event));
 
 // function checkAnswer(event) {
 //   if (greenPad.on("click", event) === simonPatterns.length) {
-//     generatePattern + 1;
+//     generateSimonPattern + 1;
 //     userPatterns + 1;
 //   } else if (redPad.on("click", event) === simonPatterns.length) {
-//     generatePattern + 1;
+//     generateSimonPattern + 1;
 //     userPatterns + 1;
 //   } else if (bluePad.on("click", event) === simonPatterns.length) {
-//     generatePattern + 1;
+//     generateSimonPattern + 1;
 //     userPatterns + 1;
 //   } else if (yellowPad.on("click", event) === simonPatterns.length) {
-//     generatePattern + 1;
+//     generateSimonPattern + 1;
 //     userPatterns + 1;
 //   } else {
 //     console.log("game over");
@@ -181,7 +195,7 @@ yellowPad.on("click", event => generateUserPattern(event));
 //   if (userPatterns.length === simonPatterns.length) {
 //     counter + 1;
 //     // wait for
-//     generatePattern + 1;
+//     generateSimonPattern + 1;
 //   } else {
 //     gameOver();
 //   }
