@@ -14,7 +14,6 @@
     />
     <script src="js/lib/jquery-3.4.1.min.js"></script>
     <title>Let us feast on the flesh of Simon!</title>
-    <!-- <script defer src="js/main.js"></script> -->
   </head>
   <body>
     <div class="userTips">
@@ -25,28 +24,55 @@
         rel="noopener noreferrer"
         ><i class="fas fa-info"></i
       ></a>
+      
+      <button id="onBtn"><i class="fas fa-power-off"></i></button>
+      <button id="offBtn"><i class="fas fa-stop"></i></button>
+      <button id="strict"><i class="fas fa-bolt"></i></button>
     </div>
 
-    <div class="container">
-      <div class="colorPads">
-        <div class="playBoard">
-          <div id="greenPad" value="green"></div>
-          <div id="redPad" value="red"></div>
-          <div id="bluePad" value="blue"></div>
-          <div id="yellowPad" value="yellow"></div>
-        </div>
-      </div>
+    <div class="container" id="btn">
+      <div class="playBoard">
+        <div id="greenPad" class="playPad" value="greenPad"></div>
 
+        <div id="redPad" class="playPad" value="redPad"></div>
+
+        <div id="bluePad" class="playPad" value="bluePad"></div>
+
+        <div id="yellowPad" class="playPad" value="yellowPad"></div>
+      </div>
       <div class="controlBoard">
-        <div id="title">
-          <h1 class="title">Simon!</h1>
-        </div>
+        <h1 class="title">Simon!</h1>
+
         <div class="start in">
-          <i id="startDiGame" class="fas fa-play"></i>
+          <i id="startbtn" class="fas fa-play"></i>
         </div>
-        <div id="countItUP" class="level in">0</div>
-      </div>
-    </div>
+
+        <div id="countbtn" class="level in"><span id="disp"> - </span></div>
+
+      
+
+    <audio id="audioGameOver">
+      <source src="js/audio/gameover.wav" type="audio/wav"/>
+    </audio>
+    <audio id="audioGreen">
+      <source src="js/audio/green.wav" type="audio/wav"/>
+    </audio>
+    <audio id="audioRed">
+      <source src="js/audio/red.wav" type="audio/wav"/>
+    </audio>
+    <audio id="audioYellow">
+      <source src="js/audio/yellow.wav" type="audio/wav"/>
+    </audio>
+    <audio id="audioBlue">
+      <source src="js/audio/blue.wav" type="audio/wav"/>
+    </audio>
+    <audio id="audioStart">
+      <source src="js/audio/start.wav" type="audio/wav"/>
+    </audio>
+    <audio id="audioOn">
+      <source src="js/audio/onbtn.wav" type="audio/wav"/>
+    </audio>
+
 
     <script src="./js/game.js"></script>
   </body>

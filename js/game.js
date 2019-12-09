@@ -1,213 +1,157 @@
-// Initialization variables
-let gameOn, counter, maxCount, playerTurn, simonPatterns, userPatterns;
+let getLit;
+let i;
+let on;
+let off;
+let strict;
+let pattern;
 
-let numberOfUserGuesses = 0;
-// rightAnswer;
+let generatedSimonPattern = [];
+let simonPattern = [];
+let userClick = [];
+let randomSimon = 0;
+let count = 1;
 
-let colours = [
-  { colour: "red", sound: "someURL" },
-  { colour: "yellow", sound: "YELLOW SOUND" },
-  { colour: "blue", sound: "blue sound" },
-  { colour: "green", sound: "green sound" }
-];
-
-// UI VARIABLES
-const startButton = $(".start");
-const greenPad = $("#greenPad");
-const redPad = $("#redPad");
-const bluePad = $("#bluePad");
-const yellowPad = $("#yellowPad");
-
-function initializeGame() {
-  counter = 0; //score
-  maxCount = 15;
-  playerTurn = false;
-  simonPatterns = [];
-  userPatterns = [];
-
-  if (gameOn) {
-    generateSimonPattern();
-  }
-}
-
-function startGame() {
-  gameOn = true;
-  initializeGame();
-  playSimonsPatterns();
-  //colours.forEach(toggleClass);
-
-  console.log("startGame");
-}
-
-function gameOver() {
-  gameOn = false;
-  numberOfUserGuesses = 0;
-  initializeGame();
-  alert("womp womp womp");
-}
-
-function generateSimonPattern() {
-  const randomColour = colours[Math.floor(Math.random() * colours.length)];
-  playerTurn = false;
-  // numberOfUserGuesses = 0;
-  // userPatterns = [];
-
-  if (!playerTurn) {
-    simonPatterns.push(randomColour);
-  }
-}
-
-function playSimonsPatterns() {
-  // only play pattern when the game has started/initialized
-
-  if (simonPatterns.length > 0) {
-    // Loop thru the simon picks and display them
-    simonPatterns.forEach(function(pattern, index) {
-      //debugger;
-      if (pattern.colour === "red") {
-        redLight(pattern);
-      } else if (pattern.colour === "yellow") {
-        yellowLight(pattern);
-      } else if (pattern.colour === "blue") {
-        blueLight(pattern);
-      } else {
-        // Catch all, should be green
-        greenLight(pattern);
-      }
-    });
-    playerTurn = true;
-  }
-}
-
-// Pad Effect Functions
-
-function toggleLight(pad, cssClass) {
-  pad.toggleClass(cssClass);
-  return setTimeout(() => {
-    pad.toggleClass(cssClass);
-  }, 700);
-}
-
-function greenLight(pattern) {
-  // console.log(pattern.colour);
-  toggleLight(greenPad, "grLit");
-}
-function yellowLight(pattern) {
-  // console.log(pattern.colour);
-  toggleLight(yellowPad, "yeLit");
-}
-function blueLight(pattern) {
-  // console.log(pattern.colour);
-  toggleLight(bluePad, "blLit");
-}
-function redLight(pattern) {
-  // console.log(pattern.colour);
-  toggleLight(redPad, "redLit");
-}
-
-// User Click Logic
-
-function generateUserPattern(event) {
-  // take the input from the user click and add it to the user patterns array so we can check it against simon's
-  const userChoice = event.target.getAttribute("value");
-
-  if (playerTurn) {
-    numberOfUserGuesses++;
-    userPatterns.push(userChoice);
-    checkAnswer();
-  }
-
-  console.log(userChoice);
-}
-
-function checkAnswer() {
-  // checks the colour chosen in the user pattern against the simon pattern at a given index
-  let rightAnswer;
-
-  userPatterns.forEach(function(colour, index) {
-    // debugger;
-    if (colour === simonPatterns[index].colour) {
-      console.log("SAME");
-      rightAnswer = true;
-    }
-  });
-
-  console.log("rightAnswer", rightAnswer);
-  keepPlaying(rightAnswer);
-}
-
-function keepPlaying(rightAnswer) {
-  if (rightAnswer) {
-    generateSimonPattern();
-    playSimonsPatterns();
+let bigBoom = function() {
+  if (count <= 10) {
+    off = 400;
+    on = 800;
   } else {
-    gameOver();
+    off = 250;
+    on = 500;
+  }
+  pattern = setInterval(function() {
+    if (generatedSimonPattern[randomSimon] == 1) {
+      getLit = "greenlit";
+      $("#greenPad").addClass(getLit);
+      $("#audioGreen")[0].play();
+      simonPattern.push(1);
+      setTimeout(function() {
+        $("#greenPad").removeClass(getLit);
+      }, off);
+    } else if (generatedSimonPattern[randomSimon] == 2) {
+      getLit = "redlit";
+      $("#redPad").addClass(getLit);
+      $("#audioRed")[0].play();
+      simonPattern.push(2);
+      setTimeout(function() {
+        $("#redPad").removeClass(getLit);
+      }, off);
+    } else if (generatedSimonPattern[randomSimon] == 3) {
+      getLit = "bluelit";
+      $("#bluePad").addClass(getLit);
+      $("#audioBlue")[0].play();
+      simonPattern.push(3);
+      setTimeout(function() {
+        $("#bluePad").removeClass(getLit);
+      }, off);
+    } else {
+      getLit = "yellowlit";
+      $("#yellowPad").addClass(getLit);
+      $("#audioYellow")[0].play();
+      simonPattern.push(4);
+      setTimeout(function() {
+        $("#yellowPad").removeClass(getLit);
+      }, off);
+    }
+    randomSimon++;
+    if (randomSimon >= count) {
+      clearInterval(pattern);
+    }
+  }, on);
+};
+
+function checking() {
+  if (simonPattern.length == userClick.length) {
+    if (simonPattern.join() == userClick.join()) {
+      if (count == 15) {
+        setTimeout(function() {
+          alert("You HAVE WON THE MILLIONSS");
+          location.reload();
+        }, 1000);
+      } else {
+        setTimeout(function() {
+          $("#countbtn").text(count + 1);
+          count++;
+          simonPattern = [];
+          userClick = [];
+          randomSimon = 0;
+          bigBoom();
+        }, 1000);
+      }
+    } else {
+      if (strict == 1) {
+        location.reload();
+      } else {
+        setTimeout(function() {
+          $("#countbtn").text("XX");
+          $("#audioGameOver")[0].play();
+
+          simonPattern = [];
+          userClick = [];
+          randomSimon = 0;
+          bigBoom();
+        }, 1000);
+      }
+    }
   }
 }
 
-// First initial load
-startButton.on("click", startGame);
+$("#greenPad").on("click", function() {
+  $("#greenPad").addClass("greenlit");
+  $("#audioYellow")[0].play();
+  userClick.push(1);
+  setTimeout(function() {
+    $("#greenPad").removeClass("greenlit");
+  }, 250);
+  checking();
+});
 
-// Game Event Handlers
+$("#redPad").on("click", function() {
+  $("#redPad").addClass("redlit");
+  $("#audioRed")[0].play();
+  userClick.push(2);
+  setTimeout(function() {
+    $("#redPad").removeClass("redlit");
+  }, 250);
+  checking();
+});
 
-greenPad.on("click", event => generateUserPattern(event));
-redPad.on("click", event => generateUserPattern(event));
-bluePad.on("click", event => generateUserPattern(event));
-yellowPad.on("click", event => generateUserPattern(event));
+$("#bluePad").on("click", function() {
+  $("#bluePad").addClass("bluelit");
+  // $("#audioBlue"[0].play();
+  userClick.push(3);
+  setTimeout(function() {
+    $("bluePad").removeClass("bluelit");
+  }, 250);
+  checking();
+});
 
-// function checkAnswer(simonPatterns, userPatterns) {
-//   let pattern = simonPatterns.length;
-//   if (pattern != userPatterns.length) {
-//     console.log("game over");
-//   }
-//   for (let i = 0; i < pattern; i++) {
-//     if (simonPatterns[i] !== userPatterns[i]) {
-//       console.log("game over");
-//     }
-//   }
-//   return true;
-// }
-// console.log(checkAnswer("redPad"));
+$("#yellowPad").on("click", function() {
+  $("#yellowPad").addClass("yellowlit");
+  $("#audioYellow")[0].play();
+  userClick.push(4);
+  setTimeout(function() {
+    $("#yellowPad").removeClass("yellowlit");
+  }, 250);
+  checking();
+});
 
-// function checkAnswer(event) {
-//   if (greenPad.on("click", event) === simonPatterns.length) {
-//     generateSimonPattern + 1;
-//     userPatterns + 1;
-//   } else if (redPad.on("click", event) === simonPatterns.length) {
-//     generateSimonPattern + 1;
-//     userPatterns + 1;
-//   } else if (bluePad.on("click", event) === simonPatterns.length) {
-//     generateSimonPattern + 1;
-//     userPatterns + 1;
-//   } else if (yellowPad.on("click", event) === simonPatterns.length) {
-//     generateSimonPattern + 1;
-//     userPatterns + 1;
-//   } else {
-//     console.log("game over");
-//     gameOver();
-//   }
-// }
-
-// function checkAnswer(event){
-// 	userPatterns.pad === simonPatterns
-// }
-
-//   if (userPatterns.length === simonPatterns.length) {
-//     counter + 1;
-//     // wait for
-//     generateSimonPattern + 1;
-//   } else {
-//     gameOver();
-//   }
-
-//if player turn === true
-//user clicks init user pattern array
-//this can call any of the pads
-//if correct simon pattern conts + 1
-//if correct display +1
-// if false game over function is called
-
-// "pad".on("click" === simonPatterns);
-
-//if(game.counter === 15){
-//winning audio	func();
+$("#onBtn").on("click", function() {
+  $("#audioOn")[0].play();
+  $("#countbtn").text("Go!");
+  for (i = 0; i < 15; i++) {
+    generatedSimonPattern[i] = Math.ceil(Math.random() * 4);
+  }
+  $("#strict").on("click", function() {
+    strict = 1;
+  });
+  $("#startbtn").on("click", function() {
+    $("#countbtn").text(count);
+    bigBoom();
+    $("#audioStart")[0].play();
+  });
+  $("#offBtn").on("click", function() {
+    $("#audioGameOver")[0].play();
+    location.reload();
+  });
+});
