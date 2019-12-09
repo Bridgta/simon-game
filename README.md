@@ -21,7 +21,7 @@ My first Javascript Project!
 <br> Control panel that allows users to: find out how to play, turn on game, stop the game, and turn on strict mode. 
 ![simon-glow](https://i.imgur.com/bmkDaLE.png "simon-glow-frame")
 
-☐ #Getting Started: In this section include the link to your deployed game and any instructions you deem important.
+# [Play my game!](https://bridgta.github.io/simon-game/)
 
 ☐ Next Steps: fix bugs, add levels, local storage to save levels. 
 
