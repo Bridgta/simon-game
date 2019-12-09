@@ -1,20 +1,27 @@
-# simon-game
-# Project 1<br>Browser-based Game
+# Simon Game
+# Project 1 - Browser Based Game
+<br>My first Javascript Project!
+
+![simon-main](https://i.imgur.com/mMhMdyL.png "simon-main-frame")
 
 ## Overview
 
-A README.md file with these sections:
+My first Javascript Project!
 
-☐ <Your game's title>: A description of your game. Background info of the game is a nice touch.
+☐ Built a browser based game, as closely aligned with the original as possible. 
 
-☐ Screenshot(s): Images of your actual game.
+☐ Built with: HTML, CSS, JavaScript, jQuery. 
 
-☐ Technologies Used: List of the technologies used, e.g., JavaScript, HTML, CSS...
+<br> Go! indicates the game is turned on and the start button has been initated. 
+![simon-go](https://i.imgur.com/XuypeSQ.png "simon-start-frame")
 
-☐ Getting Started: In this section include the link to your deployed game and any instructions you deem important.
+<br> View of one of the panels lit up. 
+![simon-glow](https://i.imgur.com/hcinPJh.png?1 "simon-glow-frame")
 
-☐ Next Steps: Planned future enhancements (icebox items).
+<br> Control panel that allows users to: find out how to play, turn on game, stop the game, and turn on strict mode. 
+![simon-glow](https://i.imgur.com/bmkDaLE.png "simon-glow-frame")
 
-Note: Don't underestimate the value of a well crafted README.md. The README.md introduces your project to prospective employers and forms their first impression of your work!
 
-☐ Frequent commits dating back to the very beginning of the project. Commit messages should be in the present tense, e.g., "Style game board" instead of "Styled game board". Be sure to create the repo on your personal GitHub account and ensure that it is "public".
+☐ #Getting Started: In this section include the link to your deployed game and any instructions you deem important.
+
+☐ Next Steps: fix bugs, add levels, local storage to save levels. 
